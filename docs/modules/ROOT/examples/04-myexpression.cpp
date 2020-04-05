@@ -23,7 +23,7 @@
    */
 // tag::all[]
 #include <feel/feelcore/environment.hpp>
-#include <feel/feelfilters/loadmesh.hpp>
+#include <feel/feelfilters/unitsquare.hpp>
 #include <feel/feelvf/ginac.hpp>
 using namespace Feel;
 
@@ -49,7 +49,7 @@ int main(int argc, char**argv )
                                   _email="feelpp-devel@feelpp.org"));
 
     // tag::mesh[]
-    auto mesh = loadMesh(_mesh=new Mesh<Simplex<2>>);
+    auto mesh = unitSquare();
     // end::mesh[]
 
     // tag::expr[]
@@ -58,7 +58,7 @@ int main(int argc, char**argv )
 
     auto f = expr<2,1>(soption(_name="functions.f"));
     Feel::cout << "f=" << f << std::endl;
-
+#if 0
     double aVal = doption("a")+doption("b");
     std::map<std::string,double> myMap; myMap["aVal"]=aVal;
     auto i = expr(soption("functions.i"),myMap);
@@ -107,5 +107,6 @@ int main(int argc, char**argv )
     Feel::cout << "laplacian(g)(x,y)=" << laplacian_g.evaluate() << std::endl;
     Feel::cout << "laplacian(f)(x,y)=" << laplacian_f.evaluate() << std::endl;
     // end::eval[]
+#endif    
 }
 // end::all[]
