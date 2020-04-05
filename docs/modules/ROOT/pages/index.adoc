@@ -1,6 +1,6 @@
-= MyProject
+= {feelpp} Developer Manual
 
-== Introduction
+This developer manual is for {feelpp} version {project_version}.
 
-== Context
+* [x] An xref:ROOT:index.adoc[introduction to {feelpp} programming] which go through the main mathematical operations to solve a PDE and present basic programming aspects
 

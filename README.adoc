@@ -1,16 +1,10 @@
 :feelpp: Feel++
 = {feelpp} tutorial-dev 
 
-image:https://github.com/feelpp/feelpp-project/workflows/CI/badge.svg[CI]
+image:https://github.com/feelpp/feelpp-tutorial-dev/workflows/CI/badge.svg[CI]
 
-This is a {feelpp} Template Project. It serves as a template for {feelpp} projects.
+This is a {feelpp} Dev Tutorial Project. 
 
-== Features
+The Repository is organized using Antora. 
 
-* script rename.sh to rename the project
-* cmake environment
-** cpack configuration
-** ctest configuration
-* antora environment
-* github actions
-* vscode integration using container
+The code samples are compiled using {feelpp} and are stored in docs/modules/ROOT/examples.

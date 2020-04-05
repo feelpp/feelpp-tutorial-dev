@@ -23,8 +23,8 @@
 #
 
 cmake_minimum_required(VERSION 3.12)
-project(tutorial-dev VERSION 0.1.0)
-set(PROJECT_SHORTNAME "p")
+project(feelpp-tutorial-dev VERSION 0.1.0)
+set(PROJECT_SHORTNAME "tut")
 
 
 if ( ${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR} )
