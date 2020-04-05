@@ -1,4 +1,5 @@
 {
     "C_Cpp.default.configurationProvider": "vector-of-bool.cemake-tools",
-    "cmake.parallelJobs": 3
+    "cmake.parallelJobs": 3,
+    
 }
