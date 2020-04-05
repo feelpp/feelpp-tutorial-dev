@@ -35,10 +35,11 @@
 */
 // tag::all[]
 #include <feel/feelcore/environment.hpp>
-#include <feel/feeldiscr/functionspace.hpp>
+#include <feel/feeldiscr/pch.hpp>
 #include <feel/feelfilters/loadmesh.hpp>
-#include <feel/feelvf/norml2.hpp>
-#include <feel/feelvf/normh1.hpp>
+#include <feel/feelfilters/exporter.hpp>
+#include <feel/feelvf/vf.hpp>
+
 using namespace Feel;
 
 int main( int argc, char** argv )
