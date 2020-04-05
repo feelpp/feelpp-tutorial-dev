@@ -1,0 +1,5 @@
+name: myproject
+title: Feel++ MyProject
+version: '0.1.0'
+nav:
+- modules/ROOT/nav.adoc
