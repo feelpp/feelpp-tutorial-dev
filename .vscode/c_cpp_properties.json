@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "defines": [],
+            "compilerPath": "/usr/bin/clang++-9",
+            "cStandard": "c11",
+            "intelliSenseMode": "clang-x64",
+            "configurationProvider": "vector-of-bool.cemake-tools",
+            "includePath": [
+                "/usr/include/feelpp",
+                "/usr/lib/x86_64-linux-gnu/openmpi/include/",
+                "/usr/include/feelpp/eigen",
+                "/usr/include/feelpp/eigen/unsupported"
+            ],
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
