@@ -15,10 +15,9 @@ jobs:
         CXX=clang++-9 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./install ..
         make -j3
         make install
-    - name: Check build
+    - name: Ctest
       run: |
-        mkdir check && cd check
-        mpirun --bind-to core --mca btl vader,self -np 4 ../bin/feelpp_p_myapp 
+        ctest
       working-directory: build/install
     - name: Package
       run: |
