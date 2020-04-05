@@ -23,7 +23,7 @@
 #
 
 cmake_minimum_required(VERSION 3.12)
-project(myproject VERSION 0.1.0)
+project(tutorial-dev VERSION 0.1.0)
 set(PROJECT_SHORTNAME "p")
 
 
@@ -44,7 +44,6 @@ if ( NOT TARGET check )
 endif()
 
 
-add_subdirectory( src )
 add_subdirectory( docs )
 
 # extra ignored files

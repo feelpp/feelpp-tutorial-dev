@@ -1,3 +1,6 @@
+
+add_subdirectory( modules/ROOT/examples )
+
 set(APPLICATION_DOC_DIR "${CMAKE_INSTALL_DOCDIR}")
 
 set(ANTORA_OUTPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/public")

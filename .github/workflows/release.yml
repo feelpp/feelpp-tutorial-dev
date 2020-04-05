@@ -32,7 +32,7 @@ jobs:
           make -j3
           make install
           make package
-          mkdir artifact && cp myproject*.tar.gz artifact
+          mkdir artifact && cp tutorial-dev*.tar.gz artifact
           github_changelog_generator -u feelpp -p feelpp-project 
           cp CHANGELOG.md artifact
 #          echo ${{ steps.changelog.outputs.changelog }} > artifact/CHANGELOG.md
@@ -63,6 +63,6 @@ jobs:
         uses: svenstaro/upload-release-action@v1-release
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dist/myproject*
+          file: dist/tutorial-dev*
           tag: ${{ github.ref }}
           file_glob: true
