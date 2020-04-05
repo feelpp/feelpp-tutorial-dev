@@ -1,5 +1,5 @@
 name: tutorial-dev
 title: Feel++ Tutorial Dev
-version: '0.1.0'
+version: 'latest'
 nav:
 - modules/ROOT/nav.adoc
