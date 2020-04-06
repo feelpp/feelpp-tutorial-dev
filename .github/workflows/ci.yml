@@ -22,7 +22,7 @@ jobs:
     - name: Package
       run: |
         make package
-        mkdir artifact && cp tutorial-dev*.tar.gz artifact
+        mkdir artifact && cp feelpp-tutorial-dev*.tar.gz artifact
         ls -l artifact
         tar tzvf tutorial-dev*.tar.gz
       working-directory: build
