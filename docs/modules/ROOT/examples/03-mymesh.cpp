@@ -3,6 +3,8 @@
 #include <feel/feelvf/integrate.hpp>
 #include <feel/feelvf/cst.hpp>
 
+#include "ut.hpp"
+
 int main( int argc, char** argv )
 {
     using namespace Feel;
@@ -25,4 +27,10 @@ int main( int argc, char** argv )
     LOG(INFO) << "volume =" << I1;
     auto I2 = integrate( _range=boundaryfaces( mesh ), _expr=cst( 1. ) ).evaluate();
     LOG(INFO) << "surface = " << I2;
+
+    using namespace boost::ut;
+    "Mesh"_test  = [&] {
+        expect( I1(0,0) == 4.00000000_d );
+        expect( I2(0,0) == 8.00000000_d );
+    };
 }

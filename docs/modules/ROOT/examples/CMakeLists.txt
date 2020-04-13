@@ -29,9 +29,9 @@ SET(SRC
   #  model2.cpp
   #  myadvection.cpp
   #  myappwithoptions.cpp
-  #  mybackend.cpp
+  09-mybackend
   #  myfunctor.cpp
-  #  mylaplacian.cpp
+  11-mylaplacian
   #  mymeshfromstring.cpp
   #  mystokes.cpp
   )

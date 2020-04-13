@@ -25,7 +25,12 @@
 
 
 // tag::marker_main[]
-#include <feel/feel.hpp>
+#include <feel/feelcore/environment.hpp>
+#include <feel/feeldiscr/pch.hpp>
+#include <feel/feelfilters/unitsquare.hpp>
+#include <feel/feelfilters/exporter.hpp>
+#include <feel/feelvf/vf.hpp>
+
 using namespace Feel;
 
 int main(int argc, char**argv )
@@ -43,11 +48,11 @@ int main(int argc, char**argv )
 
 	// tag::marker_obj[]
 	// create a backend
-	boost::shared_ptr<Backend<double>> myBackend(backend(_name="myBackend"));
+	auto myBackend = backend(_name="myBackend");
 	// end::marker_obj[]
 
 	// create the mesh
-	auto mesh = loadMesh(_mesh=new Mesh<Simplex< 2 > > );
+	auto mesh = unitSquare();
 
 	// function space
 	auto Vh = Pch<2>( mesh );
@@ -73,14 +78,12 @@ int main(int argc, char**argv )
 
 	// tag::marker_default[]
 	// solve a(u,v)=l(v)
-	if ( Environment::isMasterRank() )
-		std::cout << "With default backend\n";
+	Feel::cout << "With default backend\n";
 	a.solve(_rhs=l,_solution=u1); // Compute with default backend
 	// end::marker_default[]
 	// tag::marker_hm[]
 	// solve a(u,v)=l(v)
-	if ( Environment::isMasterRank() )
-		std::cout << "With named backend\n";
+	Feel::cout << "With named backend\n";
 	a.solveb(_rhs=l,_solution=u2, _backend=myBackend); // Compute with myBackend
 	// end::marker_hm[]
 
