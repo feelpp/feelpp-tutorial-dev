@@ -1,9 +1,7 @@
 // -*- mode: adoc -*-
+= Using a backend
 
-Using a backend
----------------
-
-=== Introduction
+== Introduction
 
 After the discretization process, one may have to solve a (non) linear
 system. Feel++ interfaces with PETSc/SLEPc and Eigen3. Consider this
@@ -14,15 +12,15 @@ system
 A x = b
 ++++
 
-We call `Backend` an object that manages the solution strategy to
-solve it. Some explanation are available at
-link:../QuickReference/solver.adoc[Solver] and
-link:../QuickReference/preconditioner.adoc[Preconditioner].
+We call `Backend` an object that manages the solution strategy to solve it. 
+Some explanation are available at xref:dev:reference:Solver/solver.adoc[Solver] and
+xref:dev:reference:Solver/preconditioner.adoc[Preconditioner].
 
-Feel++ provides a default backend that is mostly hidden to the final
-user. In many examples, you do not have to take care of the
-backend. You change the backend behavior via the command line or
-config files. For example
+{feelpp} provides a default backend that is mostly hidden to the final user. 
+In many examples, you do not have to take care of the backend. 
+You change the backend behavior via the command line or config files. 
+
+For example
 
 [source,sh]
 ----
@@ -33,7 +31,7 @@ will use the identity matrix as a right preconditionner for the
 default backend. The size of the preconditionner will be defined from
 the size of the A matrix.
 
-If you try to solve a different system stem:[A_1 y= c] (in size) with
+If you try to solve a different system in size stem:[A_1 y= c] with
 the same backend or the default without rebuilding it, it will fail.
 
 [source,cpp]
@@ -43,7 +41,7 @@ backend(_rebuild=true)->solve(_matrix=A1,_rhs=c,_sol=y);
 
 Each of that options can be retrieved via the `--help-lib` argument in the command line.
 
-==== Non default Backend
+=== Non default Backend
 
 You may need to manage more than one backend in an application: you
 have different systems to solve and you want to keep some already
@@ -61,7 +59,7 @@ include::{examplesdir}/09-mybackend.cpp[tag=marker_opt]
 
 [source,cpp]
 ----
-include::{examplesdir}/09-mybackend.cpp[tag=marker_obj]
+include::example$09-mybackend.cpp[tag=marker_obj]
 ----
 
 WARNING: the backend's name has to match the name you gave at the
@@ -72,7 +70,7 @@ options step.
 
 [source,cpp]
 ----
-include::{examplesdir}/09-mybackend.cpp[tag=marker_default]
+include::example$09-mybackend.cpp[tag=marker_default]
 ----
 
 One of the important backend option is to be able to monitor the
@@ -87,21 +85,21 @@ residuals and iteration count
 
 [source,cpp]
 ----
-include::{examplesdir}/09-mybackend.cpp[tag=marker_hm]
+include::example$09-mybackend.cpp[tag=marker_hm]
 ----
 
-=== Implementation
+== Implementation
 
 The implementation reads as follows:
 
 [source,cpp]
 ----
-include::{examplesdir}/09-mybackend.cpp[tag=marker_main]
+include::example$09-mybackend.cpp[tag=marker_main]
 ----
 
 and the associated config file
 
 [source,cfg]
 ----
-include::{examplesdir}/09-mybackend.cfg[]
+include::example$09-mybackend.cfg[]
 ----
