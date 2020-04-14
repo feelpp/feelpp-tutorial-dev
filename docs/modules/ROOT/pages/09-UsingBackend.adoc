@@ -13,7 +13,7 @@ A x = b
 ++++
 
 We call `Backend` an object that manages the solution strategy to solve it. 
-Some explanation are available at xref:dev:reference:Solver/solver.adoc[Solver] and
+Some explanation are available at xref:dev:reference:Solver/solving.adoc[Solver] and
 xref:dev:reference:Solver/preconditioner.adoc[Preconditioner].
 
 {feelpp} provides a default backend that is mostly hidden to the final user. 
