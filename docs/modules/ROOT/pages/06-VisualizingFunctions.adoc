@@ -1,12 +1,13 @@
 // -*- mode: adoc -*-
+= Visualizing functions over a mesh
 
-Visualizing functions over a mesh
----------------------------------
+The next step is to visualize function over the mesh. 
+The source code that generate our output is presented in the xref:05-EvaluatingFunvtions.adoc[previous section], we recall it here
 
-The next step is to visualize function over the mesh. The source code that generate our output is
-available in link:../codes/05-myexporter.cpp[myexporter.cpp], presented in the previous section.
-
-
+[source,cpp]
+----
+include::example$05-myexporter.cpp[myexporter.cpp]
+----
 
 You can visualize data via :
 
@@ -22,12 +23,21 @@ The results files are in
 
 or
 
-- `$FEELPP_WORKDIR/feel/myexporter/np_1`.
+- `$FEELPP_REPOSITORY/feel/myexporter/np_1`.
 
 We discriminate output directories based on the name of the simulation
 (the parameter `_name` in the environment), the number of process
 (`mpirun -np ...`) and the type of the chosen exporter
+
+.Command line option to control the output format for visualization
 [source,bash]
 ----
 --exporter.format={ensight|ensightgold|gmsh|...}
+----
+or in the config file
+.Config file option to control the output format for visualization
+[source,ini]
+----
+[exporter]
+format={ensightgold|ensight|xdmf|gmsh|...}
 ----
