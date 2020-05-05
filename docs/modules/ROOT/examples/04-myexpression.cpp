@@ -35,6 +35,8 @@ makeOptions()
     EXPRoptions.add_options()
     ( "a", po::value<double>()->default_value( 1 ), "a parameter" )
     ( "b", po::value<double>()->default_value( 2 ), "a parameter" )
+    ( "x", po::value<double>()->default_value( 1. ), "x parameter" )
+    ( "y", po::value<double>()->default_value( 1 ), "y parameter" )
     ;
     return EXPRoptions;
 }
@@ -64,7 +66,7 @@ int main(int argc, char**argv )
     auto i = expr(soption("functions.i"),myMap);
     Feel::cout << "i=" << i << std::endl;
     // end::expr[]
-
+#endif
     // tag::grad[]
     auto grad_g=grad<2>(g);
     auto grad_f=grad(f);
@@ -95,7 +97,7 @@ int main(int argc, char**argv )
     Feel::cout << "Evaluation  at  (" << doption("x") << "," << doption("y") << "):" << std::endl;
     Feel::cout << "           g(x,y)=" << g.evaluate() << std::endl;
     Feel::cout << "           f(x,y)=" << f.evaluate() << std::endl;
-    Feel::cout << "           i(x,y)=" << i.evaluate() << std::endl;
+//    Feel::cout << "           i(x,y)=" << i.evaluate() << std::endl;
     Feel::cout << "Gradient:\n";
     Feel::cout << "     grad(g)(x,y)=" << grad_g.evaluate() << std::endl;
     Feel::cout << "     grad(f)(x,y)=" << grad_f.evaluate() << std::endl;
@@ -107,6 +109,6 @@ int main(int argc, char**argv )
     Feel::cout << "laplacian(g)(x,y)=" << laplacian_g.evaluate() << std::endl;
     Feel::cout << "laplacian(f)(x,y)=" << laplacian_f.evaluate() << std::endl;
     // end::eval[]
-#endif    
+
 }
 // end::all[]
