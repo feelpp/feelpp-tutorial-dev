@@ -47,7 +47,7 @@ To define special option, the line to add in the source code is :
 ----
 options.add_options()
       ( "hc", po::value<std::string>()->default_value( "1" ), "convective heat transfer coefficient" )
-      ( "Tinf", po::value<std::string>()->default_value( "1" ), "Temperature far from boundary" );
+      ( "Tinf", po::value<std::string>()->default_value( "1" ), "Temperature far from boundary" ) ;
 ----
 
 (it is given for special example here)
