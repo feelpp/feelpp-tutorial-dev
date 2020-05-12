@@ -37,3 +37,17 @@ The syntax is `ts.<option>`, and the main options are :
 * `time-initial` : initial time
 * `time-final` : final time
 * `time-step` : time step
+
+
+=== Add our own options
+
+To define special option, the line to add in the source code is :
+
+[souce,cpp]
+----
+options.add_options()
+      ( "hc", po::value<std::string>()->default_value( "1" ), "convective heat transfer coefficient" )
+      ( "Tinf", po::value<std::string>()->default_value( "1" ), "Temperature far from boundary" );
+----
+
+(it is given for special example here)
