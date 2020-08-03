@@ -14,11 +14,17 @@ jobs:
         BRANCH: "master"
         MESSAGE: ":github: Triggered from a GitHub Action by Tutorial-Dev Project"
   build_examples:
-    runs-on: self-hosted
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
       with:
         lfs: true
+    - name: feelpp
+      run: |
+        echo "deb https://dl.bintray.com/feelpp/ubuntu focal stable" |  tee -a /etc/apt/sources.list
+        wget -qO - https://bintray.com/user/downloadSubjectPublicKey?username=bintray | apt-key add -
+        apt update
+        apt install -y libfeelpp-dev feelpp-tools
     - name: Build Tutorial Dev
       run: |
         mkdir build && cd build
