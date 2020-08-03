@@ -36,8 +36,8 @@ jobs:
         make install
     - name: Ctest
       run: |
-        ctest
-      working-directory: build/install
+        ctest -R .
+      working-directory: build 
     - name: Package
       run: |
         make package
