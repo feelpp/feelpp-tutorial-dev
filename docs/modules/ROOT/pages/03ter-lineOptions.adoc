@@ -1,0 +1,53 @@
+// -*- mode: adoc -*-
+
+= Line options
+
+
+This page list the possible options to get with `soption`, `doption`... The syntax is 
+
+[source,cpp]
+----
+auto f = [soption | doption | ...] (_name="<field>.<option>") ;
+----
+
+
+=== Parameters and functions
+
+The syntax to configure those parameters is `parameters.<option>` or `functions.<option>`.
+The possible values for parameters and functions are :
+[source,cpp]
+----
+ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "eta", "theta", "iota", "kappa", "lambda", "mu", "nu", "xi", "omicron", "pi", "rho", "sigma", "tau", "upsilon", "phi", "chi", "psi", "omega"
+----
+
+
+
+=== Gmsh options
+
+The syntax is `gmsh.<option>`. The main options are :
+
+* `filename` : choose the `.geo`file
+* `hsize` : set the characteristic mesh size
+
+
+=== Time options
+
+The syntax is `ts.<option>`, and the main options are :
+
+* `time-initial` : initial time
+* `time-final` : final time
+* `time-step` : time step
+
+
+=== Add our own options
+
+To define special option, the line to add in the source code is :
+
+[souce,cpp]
+----
+options.add_options()
+      ( "hc", po::value<std::string>()->default_value( "1" ), "convective heat transfer coefficient" )
+      ( "Tinf", po::value<std::string>()->default_value( "1" ), "Temperature far from boundary" ) ;
+----
+
+(it is given for special example here)

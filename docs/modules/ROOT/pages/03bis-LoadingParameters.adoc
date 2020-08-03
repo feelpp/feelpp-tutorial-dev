@@ -1,0 +1,41 @@
+// -*- mode: adoc -*-
+
+= Loading parameters
+
+=== Load a function
+
+We define the {feelpp} expression that we are going to integrate using the
+`soption` function that retrieves the command line option string `functions.g`.
+We then transform this string into a {feelpp} expression using `expr()`.
+
+The command line to get the function `g` is
+
+[source,cpp]
+----
+auto g = expr (soption (_name="functions.g")) ;
+----
+
+The possible names for the function are available
+xref:ROOT:03ter-lineOptions.adoc[here].
+
+
+
+
+=== Load a value
+
+Parameters of the problems can be get with the lines
+
+[source,cpp]
+----
+double alpha = doption (_name="parameters.alpha") ;
+double dt = doption (_name="ts.time-step") ;
+----
+
+NOTE: A `int` can be obtained with `ioption`
+
+Once again, the possible names are
+xref:ROOT:03ter-lineOptions.adoc[here].
+
+To configure time parameters, we have to use the prefix `ts`.
+A list of all the time parameters (`time-step`, `time-final`, etc.) can be found
+xref:ROOT:03ter-lineOptions.adoc[here].
