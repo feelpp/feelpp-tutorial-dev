@@ -25,6 +25,9 @@ jobs:
         wget -qO - https://bintray.com/user/downloadSubjectPublicKey?username=bintray | sudo apt-key add -
         sudo apt update
         sudo apt install -y libfeelpp-dev feelpp-tools
+    - name: antora
+      run: |
+        npm i -g @antora/cli@2.3 @antora/site-generator-default@2.3
     - name: Build Tutorial Dev
       run: |
         mkdir build && cd build
