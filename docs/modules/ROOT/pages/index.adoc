@@ -1,6 +1,5 @@
 = {feelpp} Developer Manual
 
-This developer manual is for {feelpp} version {project_version}.
+This developer manual is for {feelpp} version {page-component-version}.
 
-* [x] An xref:ROOT:index.adoc[introduction to {feelpp} programming] which go through the main mathematical operations to solve a PDE and present basic programming aspects
-
+* [x] An introduction to {feelpp} programming which go through the main mathematical operations to solve a PDE and present basic programming aspects

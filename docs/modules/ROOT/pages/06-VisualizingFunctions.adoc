@@ -1,8 +1,8 @@
 // -*- mode: adoc -*-
 = Visualizing functions over a mesh
 
-The next step is to visualize function over the mesh. 
-The source code that generate our output is presented in the xref:05-EvaluatingFunvtions.adoc[previous section], we recall it here
+The next step is to visualize function over the mesh.
+The source code that generate our output is presented in the xref:05-EvaluatingFunctions.adoc[previous section], we recall it here
 
 [source,cpp]
 ----

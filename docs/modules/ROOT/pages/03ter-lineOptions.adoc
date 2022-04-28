@@ -3,7 +3,7 @@
 = Line options
 
 
-This page list the possible options to get with `soption`, `doption`... The syntax is 
+This page list the possible options to get with `soption`, `doption`... The syntax is
 
 [source,cpp]
 ----
@@ -11,7 +11,7 @@ auto f = [soption | doption | ...] (_name="<field>.<option>") ;
 ----
 
 
-=== Parameters and functions
+== Parameters and functions
 
 The syntax to configure those parameters is `parameters.<option>` or `functions.<option>`.
 The possible values for parameters and functions are :
@@ -22,7 +22,7 @@ The possible values for parameters and functions are :
 
 
 
-=== Gmsh options
+== Gmsh options
 
 The syntax is `gmsh.<option>`. The main options are :
 
@@ -30,7 +30,7 @@ The syntax is `gmsh.<option>`. The main options are :
 * `hsize` : set the characteristic mesh size
 
 
-=== Time options
+== Time options
 
 The syntax is `ts.<option>`, and the main options are :
 
@@ -39,7 +39,7 @@ The syntax is `ts.<option>`, and the main options are :
 * `time-step` : time step
 
 
-=== Add our own options
+== Add our own options
 
 To define special option, the line to add in the source code is :
 

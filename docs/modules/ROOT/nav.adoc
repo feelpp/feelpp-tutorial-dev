@@ -1,4 +1,3 @@
-.Introducing {feelpp} programming
 * Introducing {feelpp} programming
 ** xref:01-OutputDirectories.adoc[File Organisation]
 ** xref:02-SettingUpEnvironment.adoc[Runtime Environment]
