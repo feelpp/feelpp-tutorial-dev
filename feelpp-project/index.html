@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Feel++ Developer Manual :: Feelpp Tutorial Dev</title>
+    <title>Feelpp Tutorial Dev :: Feel++ Programming Tutorial</title>
     <link rel="canonical" href="https://feelpp.github.io/feelpp-tutorial-dev/feelpp-project/index.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -99,7 +99,7 @@ MathJax.Hub.Config({
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
         <div class="navbar-brand">
             <div class="navbar-item feelpp-logo">
-                <a href="https://feelpp.github.io/feelpp-tutorial-dev">Feelpp Tutorial Dev</a>
+                <a href="https://feelpp.github.io/feelpp-tutorial-dev">Feel++ Programming Tutorial</a>
             </div>
             <button class="navbar-burger" data-target="topbar-nav">
                 <span></span>
@@ -259,16 +259,85 @@ MathJax.Hub.Config({
 </aside>
 
 <article class="doc">
-<h1 class="page">Feel++ Developer Manual</h1>
+<h1 class="page">Feelpp Tutorial Dev</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>This developer manual is for Feel++ version .</p>
+<p>Feelpp Tutorial Dev is a Feel++ project.</p>
 </div>
-<div class="ulist checklist">
-<ul class="checklist">
+<div class="paragraph">
+<p>This is a Feel++ programming tutorial that shows how to use Feel++ to solve on simple problems.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_feel"><a class="anchor" href="#_feel"></a>2. Feel++</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Feel++ is a C&#43;&#43; library for the numerical simulation of partial differential equations. It is designed to be easy to use and to extend.
+{feelpp }is a free software distributed under the terms of the GNU General Public License version 3.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contents"><a class="anchor" href="#_contents"></a>3. Contents</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Feelpp Tutorial Dev project contains the following directories:</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p><i class="fa fa-check-square-o"></i> An introduction to Feel++ programming which go through the main mathematical operations to solve a PDE and present basic programming aspects</p>
+<p><code>src</code>: the C&#43;&#43; and {python} source code of the project</p>
+</li>
+<li>
+<p><code>doc</code>: the documentation of the project</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>4. Installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The installation procedure is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cmake --preset default <i class="conum" data-value="1"></i><b>(1)</b>
+$ cmake --build --preset default <i class="conum" data-value="2"></i><b>(2)</b>
+$ cmake --build --preset default -t install <i class="conum" data-value="3"></i><b>(3)</b>
+$ ctest --preset default <i class="conum" data-value="4"></i><b>(4)</b>
+$ cmake --build --preset default -t package <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Configure the project</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Build the project</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Install the project</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Run the tests</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Package the project</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </article>
   </div>
