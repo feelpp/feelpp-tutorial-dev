@@ -100,7 +100,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/feelpp/feelpp-project
+            ghcr.io/feelpp/feelpp-tutorial-dev
           tags: |
             type=ref,event=branch
             type=ref,event=pr
