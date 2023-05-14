@@ -64,14 +64,14 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         # Artifact name
-        name: feelpp-project-artifacts
+        name: feelpp-tutorial-dev-artifacts
         # Directory containing files to upload
-        path: build/default/assets/feelpp-project-*
+        path: build/default/assets/feelpp-tutorial-dev-*
     - name: Release
       if: startsWith(github.ref ,'refs/tags/v')
       uses: softprops/action-gh-release@v1
       with:
-        files: build/default/assets/feelpp-project-*
+        files: build/default/assets/feelpp-tutorial-dev-*
         draft: false
         prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc')}}
         name: Release ${{ github.ref_name }}
@@ -92,7 +92,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         # Artifact name
-        name: feelpp-project-artifacts
+        name: feelpp-tutorial-dev-artifacts
         path: artifacts/
     -
         name: Docker meta
