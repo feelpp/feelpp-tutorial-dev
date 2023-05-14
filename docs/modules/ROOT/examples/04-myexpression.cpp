@@ -69,7 +69,7 @@ int main(int argc, char**argv )
 #endif
     // tag::grad[]
     auto grad_g=grad<2>(g);
-    auto grad_f=grad(f);
+    auto grad_f=grad<2>(f);
     Feel::cout << "grad(g)=" << grad_g << std::endl;
     Feel::cout << "grad(f)=" << grad_f << std::endl;
     // end::grad[]
