@@ -1,3 +1,12 @@
+.Programming environment
+* xref:index.adoc[Introduction]
+* xref:cmake.adoc[cmake environment]
+* xref:antora.adoc[antora environment]
+* xref:vscode.adoc[vscode integration]
+* xref:githubactions.adoc[Github Actions]
+* xref:rename.adoc[Renaming the project]
+* xref:jupyter.adoc[Jupyter Notebook]
+
 .Programming {feelpp}
 * xref:01-OutputDirectories.adoc[File Organisation]
 * xref:02-SettingUpEnvironment.adoc[Runtime Environment]
@@ -10,13 +19,3 @@
 * xref:11-SolveAnEquation.adoc[Solving a PDE]
 * xref:09-UsingBackend.adoc[Using a solver backend]
 * xref:12-CreateModels.adoc[Creating models]
-
-.Programming environment
-* xref:index.adoc[Introduction]
-* xref:cmake.adoc[cmake environment]
-* xref:antora.adoc[antora environment]
-* xref:vscode.adoc[vscode integration]
-* xref:githubactions.adoc[Github Actions]
-* xref:rename.adoc[Renaming the project]
-* xref:jupyter.adoc[Jupyter Notebook]
-

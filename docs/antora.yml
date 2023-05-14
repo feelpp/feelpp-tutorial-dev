@@ -1,5 +1,5 @@
-name: feelpp-project
-title: Feel++ Project
+name: feelpp-tutorial-dev
+title: Feel++ Programming Tutorial
 version: ~
 start_page: index.adoc
 nav:

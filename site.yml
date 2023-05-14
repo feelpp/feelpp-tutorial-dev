@@ -5,7 +5,7 @@ site:
 content:
   sources:
   - url: .
-#    branches: HEAD
+    branches: HEAD
     start_path: docs
   - url: https://github.com/feelpp/book.feelpp.org
     branches: HEAD
@@ -23,7 +23,7 @@ antora:
   - '@antora/collector-extension'
 asciidoc:
   attributes:
-    project_name: Feelpp Tutorial Dev
+    project_name: "Feelpp Programming Tutorial"
     project_version: 1.0.0
     numbered: true
     allow-uri-read: true
