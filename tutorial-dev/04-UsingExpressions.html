@@ -182,6 +182,14 @@ MathJax.Hub.Config({
     <span class="version">default</span>
   </div>
   <ul class="components">
+    <li class="component">
+      <a class="title" href="../dev/latest/index.html">Developer manual</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../dev/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
     <li class="component is-current">
       <a class="title" href="index.html">Feel++ Tutorial Dev</a>
       <ul class="versions">
@@ -278,7 +286,7 @@ library).</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">    auto grad_g=grad&lt;2&gt;(g);
-    auto grad_f=grad(f);
+    auto grad_f=grad&lt;2&gt;(f);
     Feel::cout &lt;&lt; "grad(g)=" &lt;&lt; grad_g &lt;&lt; std::endl;
     Feel::cout &lt;&lt; "grad(f)=" &lt;&lt; grad_f &lt;&lt; std::endl;</code></pre>
 </div>
@@ -396,7 +404,7 @@ int main(int argc, char**argv )
     Feel::cout &lt;&lt; "i=" &lt;&lt; i &lt;&lt; std::endl;
 #endif
     auto grad_g=grad&lt;2&gt;(g);
-    auto grad_f=grad(f);
+    auto grad_f=grad&lt;2&gt;(f);
     Feel::cout &lt;&lt; "grad(g)=" &lt;&lt; grad_g &lt;&lt; std::endl;
     Feel::cout &lt;&lt; "grad(f)=" &lt;&lt; grad_f &lt;&lt; std::endl;
 

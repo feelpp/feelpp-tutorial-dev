@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Feelpp Tutorial Dev</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-tutorial-dev/dev/latest/reference/Integrals/integrate.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../../_/css/site.css">
+<link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      RR: "{\\mathbb R}",
+      NN: "{\\mathbb N}",
+      Nso: "{N_{\\mathrm{so}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      calTh: "{\\mathcal{T}_h}",
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      poly: ["{\\mathbb{#1}}",1],
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      geo: "{\\mathrm{geo}}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      opdim: "{\\operatorname{dim}}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      poly: ["{\\mathbb{#1}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      set: ["{\\left\\{#1\\right\\}}",1],
+      diam: "{\\operatorname{diam}}",
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      Next: "{\\mathrm{n}}",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      tr: "{\\operatorname{tr}}",
+      Id: "{\\mathcal{I}}",
+      disp: ["{\\mathbf{#1}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      domain: "{\\Omega}",
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      ds: "",
+      bold: ["{\\bf #1}",1],
+      p: "{\\mathrm{p}}",
+      q:"{\\mathbf{q}}",
+      n:"{\\mathbf{n}}",
+      T:"{\\mathcal{T}}",
+      F:"{\\mathcal{F}}",
+      P:"{\\mathcal{P}}",
+      v:"{\\mathbf{v}}"
+  },
+  extensions: ["mhchem.js"] }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML'>
+</script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/feelpp-tutorial-dev">Feelpp Tutorial Dev</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a href="https://docs.feelpp.org/">Documentation Reference</a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand"  href="https://www.cemosis.fr">
+                        <img class="cemosis-logo"  src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dev" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Developer manual</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Programming with Feel++</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Programming environment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Debugging Feel++</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Profiling Feel++</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../../tutorial-dev/index.html">Feel++ Development Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="#template_project:ROOT:index.adoc">Feel++ Template Project</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Mathematical Concepts Reference</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../Mesh/README.html">Mesh</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Mesh/iterators.html">Mesh iterators</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="README.html">Integrals</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="integrate.html">integrate</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mean.html">mean</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="norms.html">norms</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="project.html">project</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../Spaces/README.html">Function spaces</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Spaces/notations.html">Notations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Spaces/functionspace.html">FunctionSpace</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Spaces/projection.html">Projection</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Spaces/interpolation.html">Interpolation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Spaces/save.html">Save</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../Solver/README.html">Algebraic solutions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Solver/notations.html">Notations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Solver/backend.html">Defining a backend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Solver/preconditioner.html">Defining a preconditioner</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Solver/solving.html">Solving linear systems</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Solver/eigensolver.html">Solving eigenvalue problems</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../forms.html">Linear and Bilinear Forms</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../Time/README.html">Time Discretization</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Time/bdf.html">BDF</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../Time/adaptivestepping.html">Adaptive time stepping</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../exporter.html">Post-processing and Visualization</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../Keywords/README.html">Mathematical keywords</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../cmake.html">CMake Feel++ macros</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../environment.html">Feel++ Environment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../fileformats.html">Feel++ File Formats</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../codingrules.html">Feel++ Coding Rules</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Developer manual</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../index.html">Developer manual</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../../tutorial-dev/index.html">Feel++ Tutorial Dev</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../../tutorial-dev/index.html">default</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Developer manual</a></li>
+    <li><a href="../index.html">Mathematical Concepts Reference</a></li>
+    <li><a href="README.html">Integrals</a></li>
+    <li><a href="integrate.html">integrate</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/book.feelpp.org/edit/develop/docs/dev/modules/reference/pages/Integrals/integrate.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+
+<article class="doc">
+<div class="sect1">
+<h2 id="_integrals"><a class="anchor" href="#_integrals"></a>1. Integrals</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Feel++ provide the integrate() function to define integral expressions
+which can be used to compute integrals, define linear and bi-linear
+forms.</p>
+</div>
+<div class="sect2">
+<h3 id="_interface"><a class="anchor" href="#_interface"></a>1.1. Interface</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">  integrate( _range, _expr, _quad, _geomap );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please notice that the order of the parameter is not important, these
+are <code>boost</code> parameters, so you can enter them in the order you
+want. To make it clear, there are two required parameters and 2
+optional and they of course can be entered in any order provided you
+give the parameter name. If you don&#8217;t provide the parameter name (that
+is to say <code>_range</code> = or the others) they must be entered in the order
+they are described below.</p>
+</div>
+<div class="paragraph">
+<p>Required parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>_range</code>  = domain of integration</p>
+</li>
+<li>
+<p><code>_expr</code>  = integrand expression</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optional parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>_quad</code>  = quadrature to use instead of the default one. Several ways are possible to pass the quadrature order for backward compatibility</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Example</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explanation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_quad=&lt;n&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_quad=5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pass the quadrature order as an integer, the default quadrature is used</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v0.105</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_quad=im&lt;Convex&gt;(&lt;n&gt;)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_quad=im&lt;Triangle&gt;(5)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pass the default quadrature formula on a triangle to integrate exactly order 5 polynomials</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v0.105</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_quad=im(mesh,&lt;n&gt;)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_quad=im(mesh,5)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pass the default quadrature formula on a mesh <code>mesh</code> to integrate exactly order 5 polynomials</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v0.105</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_quad=_Q&lt;n&gt;()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_quad=_Q&lt;5&gt;()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pass the quadrature order at compile time to integrate exactly order 5 polynomials. It will be deprecated in a future release</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">up to v0.105</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Starting from v0.105, quadratures are built at runtime and no more at compile time which means that quadrature orders can be adjusted dynamically, <em>e.g</em> from a command line option
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>_geomap</code>  = type of geometric mapping to use, that is to say:</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Feel Parameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GEOMAP_HO</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High order approximation (same of the mesh)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GEOMAP_OPT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optimal approximation: high order on boundary elements order 1 in the interior</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GEOMAP_01</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Order 1 approximation (same of the mesh)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_example"><a class="anchor" href="#_example"></a>1.2. Example</h3>
+<div class="paragraph">
+<p>From <code>doc/manual/tutorial/dar.cpp</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">form1( ... ) = integrate( _range = elements( mesh ),
+                          _expr = f*id( v ) );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From <code>doc/manual/tutorial/myintegrals.cpp</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">  // compute integral f on boundary
+  double intf_3 = integrate( _range = boundaryfaces( mesh ),
+                             _expr = f );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From <code>doc/manual/advection/advection.cpp</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">  // using default quadrature
+  form2( _test = Xh, _trial = Xh, _matrix = D ) +=
+    integrate( _range = internalfaces( mesh ),
+               _quad = 2*Order,
+               _expr = ( averaget( trans( beta )*idt( u ) ) * jump( id( v ) ) )
+               + penalisation*beta_abs*( trans( jumpt( trans( idt( u ) )) )
+               *jump( trans( id( v ) ) ) ),
+               _geomap = geomap );
+  // use deprecated _Q
+  form2( _test = Xh, _trial = Xh, _matrix = D ) +=
+    integrate( _range = internalfaces( mesh ),
+               _quad = _Q&lt;2*Order&gt;(),
+               _expr = ( averaget( trans( beta )*idt( u ) ) * jump( id( v ) ) )
+               + penalisation*beta_abs*( trans( jumpt( trans( idt( u ) )) )
+               *jump( trans( id( v ) ) ) ),
+               _geomap = geomap );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From <code>doc/manual/laplacian/laplacian.cpp</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp"> auto l = form1( _test=Xh, _vector=F );
+ l = integrate( _range = elements( mesh ),
+                _expr=f*id( v ) ) +
+     integrate( _range = markedfaces( mesh, "Neumann" ),
+                _expr = nu*gradg*vf::N()*id( v ) );</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_computing_my_first_integrals"><a class="anchor" href="#_computing_my_first_integrals"></a>2. Computing my first Integrals</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This part explains how to integrate on a mesh with Feel++ (source
+<code>doc/manual/tutorial/myintegrals.cpp</code> ).</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s consider the domain \(\Omega=[0,1]^d\) and associated
+meshes. Here, we want to integrate the following function</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{aligned}
+f(x,y,z) = x^2 + y^2 + z^2
+\end{aligned}\]
+</div>
+</div>
+<div class="paragraph">
+<p>on the whole domain \(\Omega\) and on part of the boundary \(\Omega\).</p>
+</div>
+<div class="paragraph">
+<p>There is the appropriate code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">int
+main( int argc, char** argv )
+{
+    // Initialize Feel++ Environment
+    Environment env( _argc=argc, _argv=argv,
+                     _desc=feel_options(),
+                     _about=about( _name="myintegrals" ,
+                                   _author="Feel++ Consortium",
+                                   _email="feelpp-devel@feelpp.org" ) );
+
+    // create the mesh (specify the dimension of geometric entity)
+    auto mesh = unitHypercube&lt;3&gt;();
+
+    // our function to integrate
+    auto f = Px()*Px() + Py()*Py() + Pz()*Pz();
+
+    // compute integral of f (global contribution)
+    double intf_1 = integrate( _range = elements( mesh ),
+                               _expr = f ).evaluate()( 0,0 );
+
+    // compute integral of f (local contribution)
+    double intf_2 = integrate( _range = elements( mesh ),
+                               _expr = f ).evaluate(false)( 0,0 );
+
+    // compute integral f on boundary
+    double intf_3 = integrate( _range = boundaryfaces( mesh ),
+                               _expr = f ).evaluate()( 0,0 );
+
+    std::cout &lt;&lt; "int global ; local ; boundary" &lt;&lt; std::endl
+              &lt;&lt; intf_1 &lt;&lt; ";" &lt;&lt; intf_2 &lt;&lt; ";" &lt;&lt; intf_3 &lt;&lt; std::endl;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2023 <a href="https://www.cemosis.fr" style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer>
+<script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
+
+
+<script async src="../../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>
