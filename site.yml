@@ -1,11 +1,11 @@
 site:
-  title: Feelpp Tutorial Dev
+  title: Feel++ Programming Tutorial 
   url: https://feelpp.github.io/feelpp-tutorial-dev/
   start_page: feelpp-tutorial-dev::index.adoc
 content:
   sources:
   - url: .
-    branches: HEAD
+#    branches: HEAD
     start_path: docs
   - url: https://github.com/feelpp/book.feelpp.org
     branches: HEAD
