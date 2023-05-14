@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Feel++ Data Files :: Feelpp Tutorial Dev</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-tutorial-dev/tutorial-dev/01-OutputDirectories.html">
+    <title>Visualizing functions over a mesh :: Feelpp Tutorial Dev</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-tutorial-dev/feelpp-project/06-VisualizingFunctions.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -123,53 +123,76 @@ MathJax.Hub.Config({
     </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="tutorial-dev" data-version="">
+<div class="nav-container" data-component="feelpp-project" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Feel++ Tutorial Dev</a></h3>
+    <h3 class="title"><a href="index.html">Feel++ Project</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Programming Feel++</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Introducing Feel++ programming</span>
-<ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="01-OutputDirectories.html">File Organisation</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="02-SettingUpEnvironment.html">Runtime Environment</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="03-LoadingMesh.html">Loading a Mesh</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="04-UsingExpressions.html">Using expressions</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="05-EvaluatingFunctions.html">Evaluating a function</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="06-VisualizingFunctions.html">Visualizing functions</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="07-SpaceElements.html">Using function spaces</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="08-ComputingIntegrals.html">Computing integrals</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="11-SolveAnEquation.html">Solving a PDE</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="09-UsingBackend.html">Using a solver backend</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="12-CreateModels.html">Creating models</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Programming environment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cmake.html">cmake environment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="antora.html">antora environment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode.html">vscode integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="githubactions.html">Github Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rename.html">Renaming the project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jupyter.html">Jupyter Notebook</a>
   </li>
 </ul>
   </li>
@@ -178,7 +201,7 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Feel++ Tutorial Dev</span>
+    <span class="title">Feel++ Project</span>
     <span class="version">default</span>
   </div>
   <ul class="components">
@@ -191,7 +214,7 @@ MathJax.Hub.Config({
       </ul>
     </li>
     <li class="component is-current">
-      <a class="title" href="index.html">Feel++ Tutorial Dev</a>
+      <a class="title" href="index.html">Feel++ Project</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
@@ -208,14 +231,14 @@ MathJax.Hub.Config({
   <button class="nav-toggle"></button>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Feel++ Tutorial Dev</a></li>
-    <li>Introducing Feel++ programming</li>
-    <li><a href="01-OutputDirectories.html">File Organisation</a></li>
+    <li><a href="index.html">Feel++ Project</a></li>
+    <li>Programming Feel++</li>
+    <li><a href="06-VisualizingFunctions.html">Visualizing functions</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/feelpp-tutorial-dev/edit/6-update-repo-with-new-feelpp-project/docs/modules/ROOT/pages/01-OutputDirectories.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/feelpp-tutorial-dev/edit/6-update-repo-with-new-feelpp-project/docs/modules/ROOT/pages/06-VisualizingFunctions.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -236,123 +259,127 @@ MathJax.Hub.Config({
 </aside>
 
 <article class="doc">
-<h1 class="page">Feel++ Data Files</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Visualizing functions over a mesh</h1>
 <div class="paragraph">
-<p>Feel++ generates various files that are spread over various directories.
-For this tutorial, it would be beneficial to check the content of these files
-to familiarize yourself with Feel++.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_environment_variables"><a class="anchor" href="#_environment_variables"></a>1. Environment variables</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The environment variable <code>FEELPP_REPOSITORY</code> define the root directory where the simulation results will be stored.
-By default they are set to <code>$HOME/feel</code>.</p>
-</div>
-<div class="paragraph">
-<p>If you want to change the root directory where the results are stored, define e.g. <code>FEELPP_REPOSITORY</code>.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-in Feel++ docker images, such as <code>feel/feelpp</code>, it points to <code>/feel</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For running,</p>
+<p>The next step is to visualize function over the mesh.
+The source code that generate our output is presented in the <a href="05-EvaluatingFunctions.html" class="xref page">previous section</a>, we recall it here</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it -v $HOME/feel:/feel feelpp/feelpp</code></pre>
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">// tag::all[]
+#include &lt;feel/feelcore/environment.hpp&gt;
+#include &lt;feel/feeldiscr/pch.hpp&gt;
+#include &lt;feel/feeldiscr/operatorlagrangep1.hpp&gt;
+#include &lt;feel/feelfilters/exporter.hpp&gt;
+#include &lt;feel/feelfilters/unitcircle.hpp&gt;
+
+// tag::main[]
+int main(int argc, char**argv )
+{
+  using namespace Feel;
+  Environment env( _argc=argc, _argv=argv,
+      _about=about(_name="myexporter",
+        _author="Christophe Prud'homme",
+        _email="christophe.prudhomme@feelpp.org"));
+
+  // tag::meshspace[]
+  // circle - geometrical order: 2
+  auto mesh = unitCircle&lt;2&gt;();
+
+  // circle - geometrical order: 1
+  auto meshp1 = unitCircle&lt;1&gt;();
+
+  auto Xh = Pch&lt;2&gt;( mesh );
+  // end::meshspace[]
+
+  // tag::expr[]
+  auto myExpr = sin(pi*Px());
+  // end::expr[]
+
+  // tag::project[]
+  auto v = project( _space=Xh, _range=elements(mesh), _expr=myExpr);
+  // end::project[]
+
+  // tag::exporter[]
+  auto exhi = exporter( _mesh=mesh, _name="exhi" );
+  auto exlo = exporter( _mesh=meshp1, _name="exlo" );
+//  auto exhilo = exporter( _mesh=lagrangeP1(_space=Xh)-&gt;mesh(),_name="exhilo");
+
+  int max = 10; double dt = 0.1;
+  double time = 0;
+  for (int i = 0; i&lt;max; i++)
+  {
+    //exhilo-&gt;step( time )-&gt;add( "vhilo", v );
+    exlo-&gt;step( time )-&gt;add( "vlo", idv(v) );
+    exhi-&gt;step( time )-&gt;add( "vhi", v );
+    time += dt;
+    // tag::save[]
+    exhi-&gt;save();
+    exlo-&gt;save();
+    //exhilo-&gt;save();
+    // end::save[]
+  }
+  // end::exporter[]
+}
+// end::main[]
+// end::all[]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>should get you this output</p>
+<p>You can visualize data via :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>link::https://www.ceisoftware.com/[ensight]</p>
+</li>
+<li>
+<p>link::http://www.paraview.org/[paraview]</p>
+</li>
+<li>
+<p>link::http://geuz.org/gmsh[gmsh]</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The results files are in</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$HOME/feel/myexporter/np_1</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$FEELPP_REPOSITORY/feel/myexporter/np_1</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We discriminate output directories based on the name of the simulation
+(the parameter <code>_name</code> in the environment), the number of process
+(<code>mpirun -np &#8230;&#8203;</code>) and the type of the chosen exporter</p>
+</div>
+<div class="listingblock">
+<div class="title">Command line option to control the output format for visualization</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">--exporter.format={ensight|ensightgold|gmsh|...}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or in the config file
+.Config file option to control the output format for visualization</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">feelpp@50381de2bd23:~$</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>and here is the result of <code>echo $FEELPP_REPOSITORY</code> in the docker image</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">feelpp@50381de2bd23:~$ echo $FEELPP_REPOSITORY
-/feel</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_results"><a class="anchor" href="#_results"></a>2. Results</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Results of Feel++ simulations are stored in <code>$FEELPP_REPOSITORY/feel/&lt;your_app_name&gt;/</code> or in a sub-directory.
-The name of the directory is <code>np_&lt;num&gt;</code> where <code>num</code> is the number of processors used by the numerical simulation.</p>
-</div>
-<div class="sect2">
-<h3 id="_logfiles"><a class="anchor" href="#_logfiles"></a>2.1. Logfiles</h3>
-<div class="paragraph">
-<p>Feel++ uses <a href="https://github.com/google/glog">Google Glog</a> to generate logfiles.
-They are stored in  <code>np_&lt;num&gt;/logs</code>.
-By default, only the master MPI process produces a logfile.
-This can be changed using the option:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Option</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default value</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">disable_log</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Disable logfile generation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">log_level_process</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">log level: 2 enable logging for all processes, 1 enable only for master 0 disable for all processes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_cad_and_meshes"><a class="anchor" href="#_cad_and_meshes"></a>2.2. CAD and Meshes</h3>
-<div class="paragraph">
-<p>A copy of the mesh and eventually the CAD can be found in  <code>np_&lt;num&gt;</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-the CAD and mesh are present both when GMSH is used to generate a mesh from Feel++ from a CAD file.
-</td>
-</tr>
-</table>
-</div>
-</div>
+<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">[exporter]
+format={ensightgold|ensight|xdmf|gmsh|...}</code></pre>
 </div>
 </div>
 </article>
