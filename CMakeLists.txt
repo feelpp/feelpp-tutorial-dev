@@ -22,7 +22,7 @@
 #
 #
 cmake_minimum_required(VERSION 3.21.0)
-project(feelpp-tutorial-dev VERSION 2.0.2)
+project(feelpp-tutorial-dev VERSION 1.0.0)
 set(EXTRA_VERSION "")
 set(PROJECT_SHORTNAME "ftd")
 
