@@ -1,5 +1,14 @@
-name: tutorial-dev
-title: Feel++ Tutorial Dev
-version: 'latest'
+name: feelpp-tutorial-dev
+title: Feel++ Programming Tutorial
+version: ~
+start_page: index.adoc
 nav:
 - modules/ROOT/nav.adoc
+ext:
+  collector:
+    - run:
+        command: ./generate-jupyter.sh docs/modules/ROOT
+      scan:
+        dir: jupyter/
+        files: '**/*.ipynb'
+        base: modules/ROOT/attachments/
