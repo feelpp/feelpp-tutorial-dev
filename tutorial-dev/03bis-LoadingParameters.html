@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Loading parameters :: Feelpp Tutorial Dev</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-tutorial-dev/tutorial-dev/03bis-LoadingParameters.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      RR: "{\\mathbb R}",
+      NN: "{\\mathbb N}",
+      Nso: "{N_{\\mathrm{so}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      calTh: "{\\mathcal{T}_h}",
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      poly: ["{\\mathbb{#1}}",1],
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      geo: "{\\mathrm{geo}}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      opdim: "{\\operatorname{dim}}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      poly: ["{\\mathbb{#1}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      set: ["{\\left\\{#1\\right\\}}",1],
+      diam: "{\\operatorname{diam}}",
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      Next: "{\\mathrm{n}}",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      tr: "{\\operatorname{tr}}",
+      Id: "{\\mathcal{I}}",
+      disp: ["{\\mathbf{#1}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      domain: "{\\Omega}",
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      ds: "",
+      bold: ["{\\bf #1}",1],
+      p: "{\\mathrm{p}}",
+      q:"{\\mathbf{q}}",
+      n:"{\\mathbf{n}}",
+      T:"{\\mathcal{T}}",
+      F:"{\\mathcal{F}}",
+      P:"{\\mathcal{P}}",
+      v:"{\\mathbf{v}}"
+  },
+  extensions: ["mhchem.js"] }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML'>
+</script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+                <a href="https://feelpp.github.io/feelpp-tutorial-dev">Feelpp Tutorial Dev</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a href="https://docs.feelpp.org/">Documentation Reference</a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand"  href="https://www.cemosis.fr">
+                        <img class="cemosis-logo"  src="../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="tutorial-dev" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Feel++ Tutorial Dev</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introducing Feel++ programming</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-OutputDirectories.html">File Organisation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-SettingUpEnvironment.html">Runtime Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-LoadingMesh.html">Loading a Mesh</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-UsingExpressions.html">Using expressions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-EvaluatingFunctions.html">Evaluating a function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-VisualizingFunctions.html">Visualizing functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-SpaceElements.html">Using function spaces</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-ComputingIntegrals.html">Computing integrals</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11-SolveAnEquation.html">Solving a PDE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-UsingBackend.html">Using a solver backend</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12-CreateModels.html">Creating models</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Feel++ Tutorial Dev</span>
+    <span class="version">default</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">Feel++ Tutorial Dev</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">default</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Feel++ Tutorial Dev</a></li>
+    <li><a href="03bis-LoadingParameters.html">Loading parameters</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/feelpp-tutorial-dev/edit/6-update-repo-with-new-feelpp-project/docs/modules/ROOT/pages/03bis-LoadingParameters.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+
+<article class="doc">
+<h1 class="page">Loading parameters</h1>
+<div class="sect1">
+<h2 id="_load_a_function"><a class="anchor" href="#_load_a_function"></a>1. Load a function</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We define the Feel++ expression that we are going to integrate using the
+<code>soption</code> function that retrieves the command line option string <code>functions.g</code>.
+We then transform this string into a Feel++ expression using <code>expr()</code>.</p>
+</div>
+<div class="paragraph">
+<p>The command line to get the function <code>g</code> is</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">auto g = expr (soption (_name="functions.g")) ;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The possible names for the function are available
+<a href="03ter-lineOptions.html" class="xref page">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_load_a_value"><a class="anchor" href="#_load_a_value"></a>2. Load a value</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Parameters of the problems can be get with the lines</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">double alpha = doption (_name="parameters.alpha") ;
+double dt = doption (_name="ts.time-step") ;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A <code>int</code> can be obtained with <code>ioption</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once again, the possible names are
+<a href="03ter-lineOptions.html" class="xref page">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>To configure time parameters, we have to use the prefix <code>ts</code>.
+A list of all the time parameters (<code>time-step</code>, <code>time-final</code>, etc.) can be found
+<a href="03ter-lineOptions.html" class="xref page">here</a>.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2023 <a href="https://www.cemosis.fr" style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+
+
+<script async src="../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../_/js/vendor/fontawesome.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>
