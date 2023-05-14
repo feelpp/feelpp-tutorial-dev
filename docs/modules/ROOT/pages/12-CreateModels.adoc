@@ -1,18 +1,14 @@
 // -*- mode: adoc -*-
+= Defining a Model
 
-Defining a Model
-----------------
-
-=== Introduction
+== Introduction
 
 It is well known an equation can describe a huge range of physical
 problems. Each of theses problems will have a particular environment,
 but the equation to solve will be the same. To make our program
-applicable to theses range of problem, we have defined a model. Models
-definitions can be retrieve in this
-link:../07-quickref/Models/README.adoc[section].
+applicable to theses range of problem, we have defined a model. 
 
-=== What is a model
+== What is a model
 
 A model is defined by :
 
@@ -30,11 +26,11 @@ A model is defined by :
 
 - Post Processing
 
-==== Parameters
+=== Parameters
 
 A parameter is a non physical property for a model.
 
-==== Materials
+=== Materials
 
 To retrieve the materials properties, we use :
 
@@ -43,7 +39,7 @@ To retrieve the materials properties, we use :
 ModelMaterials materials = model.materials();
 ----
 
-==== BoundaryConditions
+=== BoundaryConditions
 
 Thanks to GiNaC, we handle boundary conditions (Dirichlet, Neumann, Robin) as expression. You have to indicate in the json file the quantity to handle (velocity, pressure...) and the associated expression.
 
@@ -63,18 +59,18 @@ We can apply theses boundary condition this way
   }
 ----
 
-==== Code
+=== Code
 
 [source,cpp]
 ----
 include::{examplesdir}/10-model1.cpp[]
 ----
 
-==== PostProcessing
+=== PostProcessing
 
 NOTE: explanation pending.
 
-==== Example
+=== Example
 
 We have set up an example : an anisotropic laplacian.
 

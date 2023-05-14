@@ -1,10 +1,43 @@
 :feelpp: Feel++
-= {feelpp} tutorial-dev 
+:cpp: C++
+:project: feelpp-tutorial-dev
+
+= Programming {feelpp} Tutorial
+Christophe Prud'homme <https://github.com/prudhomm[@prudhomm]>
+v2: 
 
 image:https://github.com/feelpp/feelpp-tutorial-dev/workflows/CI/badge.svg[CI]
 
-This is a {feelpp} Dev Tutorial Project. 
+This repository provides a {feelpp} programming tutorial. 
 
-The Repository is organized using Antora. 
+It includes
 
-The code samples are compiled using {feelpp} and are stored in docs/modules/ROOT/examples.
+- [x] {feelpp} applications in {cpp} to use {feelpp} and {feelpp} toolboxes in `src`
+- [x] documentation using asciidoc and antora
+- [x] python {feelpp} notebooks that can be downloaded from the documentation
+- [x] continuous integration including tests for the {cpp} applications
+- [x] docker image generation for the project
+- [x] a set of {cpp} examples using the {feelpp} library
+
+The documentation for feelpp-project is available at link:https://feelpp.github.io/feelpp-project[here] and you can build on it for your project by enabling the link:https://docs.github.com/en/pages[github pages] for your repository.
+
+== Renaming the project
+
+By default the project is named  `feelpp-project` if you cloned the repository `feelpp/feelpp-project`.
+However if you used the previous repository as a template, then the project is renamed using the name of the repository using the script `rename.sh` at the initialization of the repository.
+If the name does not suit you, you can change it again using the script `rename.sh` and providing the new name as argument.
+
+WARNING: the script `rename.sh` will rename the project however some url might be set properly if you rename the project yourself. You need to check the following files: `docs/site.yml` and `docs/package.json` and fix the urls after the rename process is done.
+
+== Updating the {project} version
+
+The version of the project is defined in the files `CMakeLists.txt`, `docs/antora.yml` and `docs/package.json`. 
+You need to update with the same version in all files.
+
+== Release process
+
+{project} uses semver versioning. The release process is the following:
+
+- [x] update the version in CMakeLists.txt
+- [x] update the version in docs/antora.yml
+- [x] commit the changes with the tag `vX.Y.Z` and push the tag to github, this will trigger the CI to build the documentation and the docker image as well as the release of the software on github.

@@ -1,54 +1,131 @@
 name: CI
 
-on: [push]
+on: 
+  push:
+    branches: 
+      - '**' # Push events on all branches
+    paths-ignore:
+      - '.github/workflows/init.yml'
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10 including semver
 
 jobs:
+
   build_docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    name: Build, Install, Package documentation
+    if: "!contains(github.event.head_commit.message, 'docs skip')"
     steps:
-    - uses: buildkite/trigger-pipeline-action@v1.2.0
+    - uses: actions/checkout@v3
+    - name: Install credentials
+      run: echo https://$GITHUB_OAUTH:@github.com > $HOME/.git-credentials
       env:
-        BUILDKITE_API_ACCESS_TOKEN: ${{ secrets.BUILDKITE_API_ACCESS_TOKEN }}
-        PIPELINE: "feelpp/feelpp-docs"
-        COMMIT: "HEAD"
-        BRANCH: "master"
-        MESSAGE: ":github: Triggered from a GitHub Action by Tutorial-Dev Project"
-  build_examples:
-    runs-on: ubuntu-20.04
+        GITHUB_OAUTH: ${{ secrets.CR_PAT_WORKFLOW }}
+    - name: Build
+      run: |
+        npm install
+        npm run antora
+      working-directory: docs
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: public # The folder the action should deploy.
+
+
+  build_code:
+    runs-on: self-ubuntu-22.04
+    name: Build, Install, Package code
+    if: "!contains(github.event.head_commit.message, 'code skip')"
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v3
       with:
         lfs: true
-    - name: feelpp
+        recursive: true
+    - 
+      name: Build 
       run: |
-        echo "deb https://dl.bintray.com/feelpp/ubuntu focal stable" |  sudo tee -a /etc/apt/sources.list
-        wget -qO - https://bintray.com/user/downloadSubjectPublicKey?username=bintray | sudo apt-key add -
-        sudo apt update
-        sudo apt install -y libfeelpp-dev feelpp-tools
-    - name: antora
+        cmake --preset default
+        cmake --build --preset default
+    - 
+      name: Check 
       run: |
-        sudo npm i -g @antora/cli@2.3 @antora/site-generator-default@2.3
-    - name: Build Tutorial Dev
+        ctest --preset default
+      env:
+        OMPI_ALLOW_RUN_AS_ROOT: 1 
+        OMPI_ALLOW_RUN_AS_ROOT_CONFIRM: 1
+    - 
+      name: Package
       run: |
-        mkdir build && cd build
-        CXX=clang++-9 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./install ..
-        make 
-        make install
-    - name: Ctest
-      run: |
-        ctest -R .
-      working-directory: build 
-    - name: Package
-      run: |
-        make package
-        mkdir artifact && cp feelpp-tutorial-dev*.tar.gz artifact
-        ls -l artifact
-        tar tzvf feelpp-tutorial-dev*.tar.gz
-      working-directory: build
-#    - name: Upload artifact
-#      uses: actions/upload-artifact@v1.0.0
-#      with:
-#        # Artifact name
-#        name: Tutorial Dev-${{ runner.os }} 
-#        # Directory containing files to upload
-#        path: build/install/
+        cmake --build --preset default -t package
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        # Artifact name
+        name: feelpp-tutorial-dev-artifacts
+        # Directory containing files to upload
+        path: build/default/assets/feelpp-tutorial-dev-*
+    - name: Release
+      if: startsWith(github.ref ,'refs/tags/v')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: build/default/assets/feelpp-tutorial-dev-*
+        draft: false
+        prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc')}}
+        name: Release ${{ github.ref_name }}
+        generate_release_notes: true
+        tag_name: ${{ github.ref }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+  deliver:
+    runs-on: self-ubuntu-22.04
+    needs: build_code
+    name: Build docker, tag and push
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
+        submodules: 'recursive'
+    - name: Download 
+      uses: actions/download-artifact@v3
+      with:
+        # Artifact name
+        name: feelpp-tutorial-dev-artifacts
+        path: artifacts/
+    -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ghcr.io/feelpp/feelpp-tutorial-dev
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+    -
+      name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+    -
+      name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    - 
+      name: Login to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.CR_PAT }}
+    - 
+      name: Build container image
+      uses: docker/build-push-action@v4
+      with: 
+        context: artifacts
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        file: ./Dockerfile
+        

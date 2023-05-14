@@ -1,5 +1,49 @@
-= {feelpp} Developer Manual
+= {project_name}
 
-This developer manual is for {feelpp} version {page-component-version}.
+== Introduction
 
-* [x] An introduction to {feelpp} programming which go through the main mathematical operations to solve a PDE and present basic programming aspects
+{project_name} is a {feelpp} project. 
+
+This is a {feelpp} programming tutorial that shows how to use {feelpp} to solve on simple problems.
+
+== {feelpp} 
+
+
+{feelpp} is a {cpp} library for the numerical simulation of partial differential equations. It is designed to be easy to use and to extend.
+{feelpp }is a free software distributed under the terms of the GNU General Public License version 3.
+
+== Contents
+
+The {project_name} project contains the following directories:
+
+* `src`: the {cpp} and {python} source code of the project
+* `doc`: the documentation of the project
+
+== Installation
+
+The installation procedure is as follows:
+
+[source,bash]
+----
+$ cmake --preset default # <1>
+$ cmake --build --preset default # <2>
+$ cmake --build --preset default -t install # <3>
+$ ctest --preset default # <4>
+$ cmake --build --preset default -t package # <5>
+----
+<1> Configure the project
+<2> Build the project
+<3> Install the project
+<4> Run the tests
+<5> Package the project
+
+
+
+
+
+
+
+
+
+
+

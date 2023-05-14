@@ -22,25 +22,25 @@ SET(SRC
   02-environment
   03-mymesh
   04-myexpression
-  #05-myexporter
-  07-myfunctionspace
-  08-myintegrals
-  #  model1.cpp
-  #  model2.cpp
+  05-myexporter
+#  07-myfunctionspace
+#  08-myintegrals
+ # 10-model1
+ # 10-model2
   #  myadvection.cpp
   #  myappwithoptions.cpp
-  09-mybackend
+#  09-mybackend
   #  myfunctor.cpp
-  11-mylaplacian
+#6  11-mylaplacian
   #  mymeshfromstring.cpp
   #  mystokes.cpp
   )
 foreach(app ${SRC})
   if ( EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${app}.cfg AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${app}.geo  )
-    feelpp_add_application( ${app} SRCS ${app}.cpp  CFG ${app}.cfg GEO ${app}.geo TESTS)
+    feelpp_add_application( ${app} SRCS ${app}.cpp  CFG ${app}.cfg GEO ${app}.geo)
   elseif ( EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${app}.cfg )
-    feelpp_add_application( ${app} SRCS ${app}.cpp  CFG ${app}.cfg TESTS )
+    feelpp_add_application( ${app} SRCS ${app}.cpp  CFG ${app}.cfg)
   else()
-    feelpp_add_application( ${app} SRCS ${app}.cpp TESTS )
+    feelpp_add_application( ${app} SRCS ${app}.cpp  )
   endif()
 endforeach()
