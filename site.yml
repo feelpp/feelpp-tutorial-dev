@@ -7,6 +7,9 @@ content:
   - url: .
     branches: HEAD
     start_path: docs
+  - url: https://github.com/feelpp/book.feelpp.org
+    branches: HEAD
+    start_path: docs/dev
 ui:
   supplemental_files: ./docs/antora/supplemental-ui
   bundle:
@@ -21,7 +24,7 @@ antora:
 asciidoc:
   attributes:
     project_name: Feelpp Tutorial Dev
-    project_version: 2.0.2
+    project_version: 1.0.0
     numbered: true
     allow-uri-read: true
     hide-uri-scheme: true
