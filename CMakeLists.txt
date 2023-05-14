@@ -23,7 +23,7 @@
 #
 cmake_minimum_required(VERSION 3.21.0)
 project(feelpp-tutorial-dev VERSION 1.0.0)
-set(EXTRA_VERSION "")
+set(EXTRA_VERSION "-beta.1")
 set(PROJECT_SHORTNAME "ftd")
 
 include(GNUInstallDirs)
@@ -63,8 +63,8 @@ set(CPACK_PACKAGE_NAME "${PROJECT_NAME}-${PROJECT_VERSION_MAJOR}.${PROJECT_VERSI
 set(CPACK_SOURCE_PACKAGE_FILE_NAME "${PROJECT_NAME}-${PROJECT_VERSION}${EXTRA_VERSION}")
 SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}${EXTRA_VERSION}-${CMAKE_SYSTEM_NAME}")
 set(CPACK_PACKAGE_DIRECTORY "${PROJECT_BINARY_DIR}/assets")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Cemosis feelpp-tutorial-dev template application")
-set(CPACK_PACKAGE_DESCRIPTION "Cemosis provides a Feel++ template application.")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Cemosis feelpp-tutorial-dev applications")
+set(CPACK_PACKAGE_DESCRIPTION "Cemosis provides a Feel++ programming tutorial.")
 set(CPACK_PACKAGE_VENDOR "Cemosis")
 set(CPACK_PACKAGE_CONTACT "Christophe Prud'homme <christophe.prudhomme@cemosis.fr>")
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
