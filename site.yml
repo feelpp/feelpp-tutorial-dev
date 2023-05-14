@@ -1,0 +1,34 @@
+site:
+  title: Feelpp Tutorial Dev
+  url: https://feelpp.github.io/feelpp-tutorial-dev/
+  start_page: feelpp-tutorial-dev::index.adoc
+content:
+  sources:
+  - url: .
+    branches: HEAD
+    start_path: docs
+ui:
+  supplemental_files: ./docs/antora/supplemental-ui
+  bundle:
+    url: https://github.com/feelpp/antora-ui/releases/download/v0.5/ui-bundle.zip
+    snapshot: true
+output:
+  clean: true
+  dir: public
+antora:
+  extensions:
+  - '@antora/collector-extension'
+asciidoc:
+  attributes:
+    project_name: Feelpp Tutorial Dev
+    project_version: 2.0.2
+    numbered: true
+    allow-uri-read: true
+    hide-uri-scheme: true
+    feelpp: Feel++
+    angiotk: AngioTK
+    4fastsim: 4FastSim
+    stem: latexmath
+    hemotumpp: Hemotum++
+    eye2brain: Eye2Brain
+    swimmer: Swimmer
