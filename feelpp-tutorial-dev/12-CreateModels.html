@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Feel++ Programming Tutorial</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-tutorial-dev/feelpp-project/12-CreateModels.html">
+    <title>Defining a Model :: Feel++ Programming Tutorial</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-tutorial-dev/feelpp-tutorial-dev/12-CreateModels.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -123,13 +123,40 @@ MathJax.Hub.Config({
     </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="feelpp-project" data-version="">
+<div class="nav-container" data-component="feelpp-tutorial-dev" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Feel++ Project</a></h3>
+    <h3 class="title"><a href="index.html">Feel++ Programming Tutorial</a></h3>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Programming environment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cmake.html">cmake environment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="antora.html">antora environment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode.html">vscode integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="githubactions.html">Github Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rename.html">Renaming the project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jupyter.html">Jupyter Notebook</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Programming Feel++</span>
@@ -169,39 +196,12 @@ MathJax.Hub.Config({
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Programming environment</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="index.html">Introduction</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="cmake.html">cmake environment</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="antora.html">antora environment</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="vscode.html">vscode integration</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="githubactions.html">Github Actions</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="rename.html">Renaming the project</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="jupyter.html">Jupyter Notebook</a>
-  </li>
-</ul>
-  </li>
 </ul>
   </nav>
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Feel++ Project</span>
+    <span class="title">Feel++ Programming Tutorial</span>
     <span class="version">default</span>
   </div>
   <ul class="components">
@@ -214,7 +214,7 @@ MathJax.Hub.Config({
       </ul>
     </li>
     <li class="component is-current">
-      <a class="title" href="index.html">Feel++ Project</a>
+      <a class="title" href="index.html">Feel++ Programming Tutorial</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
@@ -229,9 +229,10 @@ MathJax.Hub.Config({
 <main class="article">
 <div class="toolbar" role="navigation">
   <button class="nav-toggle"></button>
+    <a href="index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Feel++ Project</a></li>
+    <li><a href="index.html">Feel++ Programming Tutorial</a></li>
     <li>Programming Feel++</li>
     <li><a href="12-CreateModels.html">Creating models</a></li>
   </ul>
@@ -259,22 +260,21 @@ MathJax.Hub.Config({
 </aside>
 
 <article class="doc">
+<h1 class="page">Defining a Model</h1>
 <div class="sect1">
-<h2 id="_defining_a_model"><a class="anchor" href="#_defining_a_model"></a>1. Defining a Model</h2>
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_introduction"><a class="anchor" href="#_introduction"></a>1.1. Introduction</h3>
 <div class="paragraph">
 <p>It is well known an equation can describe a huge range of physical
 problems. Each of theses problems will have a particular environment,
 but the equation to solve will be the same. To make our program
-applicable to theses range of problem, we have defined a model. Models
-definitions can be retrieve in this
-<a href="../07-quickref/Models/README.adoc">section</a>.</p>
+applicable to theses range of problem, we have defined a model.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_what_is_a_model"><a class="anchor" href="#_what_is_a_model"></a>1.2. What is a model</h3>
+</div>
+<div class="sect1">
+<h2 id="_what_is_a_model"><a class="anchor" href="#_what_is_a_model"></a>2. What is a model</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>A model is defined by :</p>
 </div>
@@ -303,14 +303,14 @@ definitions can be retrieve in this
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>1.2.1. Parameters</h4>
+<div class="sect2">
+<h3 id="_parameters"><a class="anchor" href="#_parameters"></a>2.1. Parameters</h3>
 <div class="paragraph">
 <p>A parameter is a non physical property for a model.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_materials"><a class="anchor" href="#_materials"></a>1.2.2. Materials</h4>
+<div class="sect2">
+<h3 id="_materials"><a class="anchor" href="#_materials"></a>2.2. Materials</h3>
 <div class="paragraph">
 <p>To retrieve the materials properties, we use :</p>
 </div>
@@ -320,8 +320,8 @@ definitions can be retrieve in this
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_boundaryconditions"><a class="anchor" href="#_boundaryconditions"></a>1.2.3. BoundaryConditions</h4>
+<div class="sect2">
+<h3 id="_boundaryconditions"><a class="anchor" href="#_boundaryconditions"></a>2.3. BoundaryConditions</h3>
 <div class="paragraph">
 <p>Thanks to GiNaC, we handle boundary conditions (Dirichlet, Neumann, Robin) as expression. You have to indicate in the json file the quantity to handle (velocity, pressure&#8230;&#8203;) and the associated expression.</p>
 </div>
@@ -343,8 +343,8 @@ definitions can be retrieve in this
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_code"><a class="anchor" href="#_code"></a>1.2.4. Code</h4>
+<div class="sect2">
+<h3 id="_code"><a class="anchor" href="#_code"></a>2.4. Code</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">  for(auto it : materials)
@@ -378,8 +378,8 @@ definitions can be retrieve in this
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_postprocessing"><a class="anchor" href="#_postprocessing"></a>1.2.5. PostProcessing</h4>
+<div class="sect2">
+<h3 id="_postprocessing"><a class="anchor" href="#_postprocessing"></a>2.5. PostProcessing</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -393,8 +393,8 @@ explanation pending.
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_example"><a class="anchor" href="#_example"></a>1.2.6. Example</h4>
+<div class="sect2">
+<h3 id="_example"><a class="anchor" href="#_example"></a>2.6. Example</h3>
 <div class="paragraph">
 <p>We have set up an example : an anisotropic laplacian.</p>
 </div>
@@ -494,7 +494,6 @@ int main(int argc, char**argv )
   }
   return 0;
 }</code></pre>
-</div>
 </div>
 </div>
 </div>

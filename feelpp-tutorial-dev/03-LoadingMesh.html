@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Cmake environment :: Feel++ Programming Tutorial</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-tutorial-dev/feelpp-project/cmake.html">
+    <title>Loading a Mesh :: Feel++ Programming Tutorial</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-tutorial-dev/feelpp-tutorial-dev/03-LoadingMesh.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -123,13 +123,40 @@ MathJax.Hub.Config({
     </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="feelpp-project" data-version="">
+<div class="nav-container" data-component="feelpp-tutorial-dev" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Feel++ Project</a></h3>
+    <h3 class="title"><a href="index.html">Feel++ Programming Tutorial</a></h3>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Programming environment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cmake.html">cmake environment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="antora.html">antora environment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vscode.html">vscode integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="githubactions.html">Github Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rename.html">Renaming the project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jupyter.html">Jupyter Notebook</a>
+  </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Programming Feel++</span>
@@ -140,7 +167,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="02-SettingUpEnvironment.html">Runtime Environment</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="03-LoadingMesh.html">Loading a Mesh</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -169,39 +196,12 @@ MathJax.Hub.Config({
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Programming environment</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="index.html">Introduction</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="cmake.html">cmake environment</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="antora.html">antora environment</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="vscode.html">vscode integration</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="githubactions.html">Github Actions</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="rename.html">Renaming the project</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="jupyter.html">Jupyter Notebook</a>
-  </li>
-</ul>
-  </li>
 </ul>
   </nav>
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Feel++ Project</span>
+    <span class="title">Feel++ Programming Tutorial</span>
     <span class="version">default</span>
   </div>
   <ul class="components">
@@ -214,7 +214,7 @@ MathJax.Hub.Config({
       </ul>
     </li>
     <li class="component is-current">
-      <a class="title" href="index.html">Feel++ Project</a>
+      <a class="title" href="index.html">Feel++ Programming Tutorial</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
@@ -229,16 +229,17 @@ MathJax.Hub.Config({
 <main class="article">
 <div class="toolbar" role="navigation">
   <button class="nav-toggle"></button>
+    <a href="index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Feel++ Project</a></li>
-    <li>Programming environment</li>
-    <li><a href="cmake.html">cmake environment</a></li>
+    <li><a href="index.html">Feel++ Programming Tutorial</a></li>
+    <li>Programming Feel++</li>
+    <li><a href="03-LoadingMesh.html">Loading a Mesh</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/feelpp-tutorial-dev/edit/6-update-repo-with-new-feelpp-project/docs/modules/ROOT/pages/cmake.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/feelpp-tutorial-dev/edit/6-update-repo-with-new-feelpp-project/docs/modules/ROOT/pages/03-LoadingMesh.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -259,79 +260,88 @@ MathJax.Hub.Config({
 </aside>
 
 <article class="doc">
-<h1 class="page">Cmake environment</h1>
+<h1 class="page">Loading a Mesh</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The CMakeLists.txt is setup with Feel++.
-A sample Feel++ application is available in <code>src</code>.</p>
+<p>The next step is to load a mesh.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_building"><a class="anchor" href="#_building"></a>1. Building</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The CMakeLists.txt is configured to build the application in <code>src</code>.
-The following commands can be used to build the application:</p>
+<p>The <code>loadMesh</code> function has a <code>_name</code> option set by default as the
+default value of the <code>--gmsh.filename</code> option that point either to a <code>.geo</code>, either to a <code>.msh</code>, or a <code>.h5</code> file.</p>
+</div>
+<div class="paragraph">
+<p>Meshes in general are more detailed in this <a href="../dev/latest/reference/Mesh/README.html" class="xref page">section</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> $ cmake --preset default <i class="conum" data-value="1"></i><b>(1)</b>
- $ cmake --build --preset default <i class="conum" data-value="2"></i><b>(2)</b>
- $ cmake --build --preset default -t install <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Configure the project</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Build the project</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Install the project</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_packaging"><a class="anchor" href="#_packaging"></a>2. Packaging</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>CPack is configured and allows to generate a binary and source package.
-Use the following commands to generate the binary package:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ cmake --build --preset default -t package</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Use the following commands to generate the source package:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ cmake --build --preset default -t package_source</pre>
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">auto mesh=loadMesh( _mesh=new Mesh&lt;Simplex&lt;2&gt;&gt; );</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_testing"><a class="anchor" href="#_testing"></a>3. Testing</h2>
+<h2 id="_exporting_the_mesh_for_visualisation"><a class="anchor" href="#_exporting_the_mesh_for_visualisation"></a>1. Exporting the Mesh for visualisation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>CTest is configured.
-Use the following command to run the tests:</p>
+<p>See this <a href="06-VisualizingFunctions.html" class="xref page">section</a> for more details about exporting and visualizing meshes.</p>
 </div>
-<div class="literalblock">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implementation"><a class="anchor" href="#_implementation"></a>2. Implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An implementation reads as follows:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>$ cmake --build --preset default -t test</pre>
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">#include &lt;feel/feelcore/environment.hpp&gt;
+#include &lt;feel/feelfilters/loadmesh.hpp&gt;
+#include &lt;feel/feelvf/integrate.hpp&gt;
+#include &lt;feel/feelvf/cst.hpp&gt;
+
+#include "ut.hpp"
+
+int main( int argc, char** argv )
+{
+    using namespace Feel;
+    
+    // initialize Feel++ Environment
+    Environment env( _argc=argc, _argv=argv,
+                     _about=about( _name="mymesh" ,
+                                   _author="Feel++ Consortium",
+                                   _email="feelpp-devel@feelpp.org" ) );
+   
+                                   
+    // tag::mesh[]
+    // create a mesh with GMSH using Feel++ geometry tool
+    auto mesh = loadMesh(_mesh=new  Mesh&lt;Simplex&lt;2&gt;&gt;);
+    // end::mesh[]
+
+    LOG(INFO) &lt;&lt; "mesh " &lt;&lt; soption(_name="gmsh.filename") &lt;&lt; " loaded";
+    using namespace Feel::vf;
+    auto I1 = integrate( _range=elements( mesh ), _expr=cst( 1. ) ).evaluate();
+    LOG(INFO) &lt;&lt; "volume =" &lt;&lt; I1;
+    auto I2 = integrate( _range=boundaryfaces( mesh ), _expr=cst( 1. ) ).evaluate();
+    LOG(INFO) &lt;&lt; "surface = " &lt;&lt; I2;
+
+    using namespace boost::ut;
+    "Mesh"_test  = [&amp;] {
+        expect( I1(0,0) == 4.00000000_d );
+        expect( I2(0,0) == 8.00000000_d );
+    };
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and the associated config file</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cfg hljs" data-lang="cfg">[gmsh]
+hsize=1e-1
+filename=$cfgdir/03-mymesh.geo</code></pre>
 </div>
 </div>
 </div>
