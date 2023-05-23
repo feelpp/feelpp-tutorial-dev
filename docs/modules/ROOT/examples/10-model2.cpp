@@ -1,19 +1,28 @@
 #include <feel/feel.hpp>
 #include <feel/feelmodels/modelproperties.hpp>
+
+const int MODEL_DIM = 3;
+
+
 int main(int argc, char**argv )
 {
   using namespace Feel;
   po::options_description laplacianoptions( "Laplacian options" );
   laplacianoptions.add_options()
-    ("myVerbose", po::value< bool >()-> default_value( true ), "Display information during execution")
-    ;
+    ("myVerbose", po::value< bool >()-> default_value( true ), "Display information during execution");
+    
   Environment env( _argc=argc, _argv=argv,
       _desc=laplacianoptions,
       _about=about(_name="aniso_laplacian",
         _author="Feel++ Consortium",
         _email="feelpp-devel@feelpp.org"));
+
   ModelProperties model; // Will load --mod-file
+  
   map_scalar_field<2> bc_u { model.boundaryConditions().getScalarFields<2>("heat","dirichlet") };
+
+
+
   ModelMaterials materials = model.materials();
   if(boption("myVerbose") && Environment::isMasterRank() )
     std::cout << "Model " << Environment::expand( soption("mod-file")) << " loaded." << std::endl;
@@ -25,6 +34,7 @@ int main(int argc, char**argv )
   auto k11 = Vh->element();
   auto k12 = Vh->element();
   auto k22 = Vh->element();
+
 #if MODEL_DIM == 3
   auto k13 = Vh->element();
   auto k23 = Vh->element();
@@ -35,27 +45,31 @@ int main(int argc, char**argv )
   l = integrate(_range=elements(mesh),_expr=f*id(v));
   for(auto it : materials)
   {
-    auto mat = material(it);
-    if(boption("myVerbose") && Environment::isMasterRank() )
-      std::cout << "[Materials] - Laoding data for " << it.second.name() << " that apply on marker " << it.first  << " with diffusion coef [" 
-#if MODEL_DIM == 3
-        << "[" << it.second.k11() << "," << it.second.k12() << "," << it.second.k13() << "],"
-        << "[" << it.second.k12() << "," << it.second.k22() << "," << it.second.k23() << "],"
-        << "[" << it.second.k13() << "," << it.second.k23() << "," << it.second.k33() << "]]" 
-#else
-        << "[" << it.second.k11() << "," << it.second.k12() << "],"
-        << "[" << it.second.k12() << "," << it.second.k22() << "]]"
-#endif
-        << std::endl;
-    k11.on(_range=markedelements(mesh,it.first),_expr=cst(it.second.k11()));
-    k12.on(_range=markedelements(mesh,it.first),_expr=cst(it.second.k12()));
-    k22.on(_range=markedelements(mesh,it.first),_expr=cst(it.second.k22()));
-#if MODEL_DIM == 3
-    k13 += vf::project(_space=Vh,_range=markedelements(mesh,marker(it)),_expr=mat.k13());
-    k23 += vf::project(_space=Vh,_range=markedelements(mesh,marker(it)),_expr=mat.k23());
-    k33 += vf::project(_space=Vh,_range=markedelements(mesh,marker(it)),_expr=mat.k33());
-#endif
+        
+
+        auto mat = material(it);
+        if(boption("myVerbose") && Environment::isMasterRank() )
+          std::cout << "[Materials] - Laoding data for " << it.second.name() << " that apply on marker " << it.first  << " with diffusion coef [" 
+    #if MODEL_DIM == 3
+            << "[" << it.second.k11() << "," << it.second.k12() << "," << it.second.k13() << "],"
+            << "[" << it.second.k12() << "," << it.second.k22() << "," << it.second.k23() << "],"
+            << "[" << it.second.k13() << "," << it.second.k23() << "," << it.second.k33() << "]]" 
+    #else
+            << "[" << it.second.k11() << "," << it.second.k12() << "],"
+            << "[" << it.second.k12() << "," << it.second.k22() << "]]"
+    #endif
+            << std::endl;
+        k11.on(_range=markedelements(mesh,it.first),_expr=cst(it.second.k11()));
+        k12.on(_range=markedelements(mesh,it.first),_expr=cst(it.second.k12()));
+        k22.on(_range=markedelements(mesh,it.first),_expr=cst(it.second.k22()));
+    #if MODEL_DIM == 3
+        k13 += vf::project(_space=Vh,_range=markedelements(mesh,marker(it)),_expr=mat.k13());
+        k23 += vf::project(_space=Vh,_range=markedelements(mesh,marker(it)),_expr=mat.k23());
+        k33 += vf::project(_space=Vh,_range=markedelements(mesh,marker(it)),_expr=mat.k33());
+    #endif
   }
+
+
 #if MODEL_DIM == 2
   a += integrate(_range=elements(mesh),_expr=inner(mat<MODEL_DIM,MODEL_DIM>(idv(k11), idv(k12), idv(k12), idv(k22) )*trans(gradt(u)),trans(grad(v))) );
 #else
@@ -66,6 +80,7 @@ int main(int argc, char**argv )
       std::cout << "[BC] - Applying " << it.second << " on " << it.first << std::endl;
     a+=on(_range=markedfaces(mesh,it.first), _rhs=l, _element=u, _expr=it.second );
   }
+
   a.solve(_rhs=l,_solution=u);
   auto e = exporter( _mesh=mesh );
   for(int i = 0; i < 3; i ++){

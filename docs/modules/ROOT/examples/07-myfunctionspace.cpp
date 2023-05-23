@@ -39,6 +39,8 @@
 #include <feel/feelfilters/loadmesh.hpp>
 #include <feel/feelfilters/exporter.hpp>
 #include <feel/feelvf/vf.hpp>
+#include "ut.hpp"
+
 
 using namespace Feel;
 
@@ -51,6 +53,8 @@ int main( int argc, char** argv )
                                    _author="Feel++ Consortium",
                                    _email="feelpp-devel@feelpp.org" )  );
 
+
+
     // tag::mesh[]
     // create the mesh
     auto mesh = loadMesh(_mesh=new Mesh<Simplex<2>>);
@@ -61,10 +65,13 @@ int main( int argc, char** argv )
     auto Xh = Pch<2>( mesh );
     // end::space[]
 
+
     // tag::expression[]
     auto g = expr<4>( soption(_name="functions.g"));
     auto gradg = grad<3>(g);
     // end::expression[]
+
+
 
     // tag::interpolant[]
     // tag::element[]
@@ -79,13 +86,30 @@ int main( int argc, char** argv )
 		// build the interpolant of the interpolation error
     w.on( _range=elements( mesh ), _expr=idv( u )-g );
 
+
+
     // compute L2 norms \(||\cdot||_{L^2}\)
-    double L2g = normL2( elements( mesh ), g );
-    double H1g = normL2( elements( mesh ), _expr=g,_grad_expr=gradg );
-    double L2uerror = normL2( elements( mesh ), ( idv( u )-g ) );
-    double H1uerror = normH1( elements( mesh ), _expr=( idv( u )-g ),
-                              _grad_expr=( gradv( u )-gradg ) );
+    double L2g = normL2(_range=elements( mesh ), _expr=g );
+    double H1g = normL2(_range=elements( mesh ), _expr=g,_grad_expr=gradg );
+
+    double L2uerror = normL2(_range=elements( mesh ), _expr=( idv( u )-g ) );
+
+
+            auto range=elements(mesh); //OK
+            auto expr=idv(u)-g; //OK
+            auto grad_expr=gradv( u )-gradg; //OK
     
+    double H1uerror = normH1(_range=range,
+                               _expr=expr, 
+                               _grad_expr=grad_expr
+                                );
+            
+
+/*
+
+
+
+  
     Feel::cout << "||u-g||_0 = " << L2uerror/L2g << std::endl;
     Feel::cout << "||u-g||_1 = " << H1uerror/H1g << std::endl;
         // end::interpolant[]
@@ -102,6 +126,8 @@ int main( int argc, char** argv )
 
     e->save();
     // end::export[]
+
+*/
 
 }
 // end::all[]
